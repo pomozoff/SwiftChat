@@ -14,6 +14,7 @@
 		264E97061D0207A80044628C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 264E97041D0207A80044628C /* LaunchScreen.storyboard */; };
 		264E97111D0207A90044628C /* SwiftChatTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264E97101D0207A90044628C /* SwiftChatTests.swift */; };
 		264E971C1D0207A90044628C /* SwiftChatUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264E971B1D0207A90044628C /* SwiftChatUITests.swift */; };
+		264E972C1D020C120044628C /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264E972B1D020C120044628C /* DatabaseManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +48,7 @@
 		264E97171D0207A90044628C /* SwiftChatUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftChatUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		264E971B1D0207A90044628C /* SwiftChatUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftChatUITests.swift; sourceTree = "<group>"; };
 		264E971D1D0207A90044628C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		264E972B1D020C120044628C /* DatabaseManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +99,7 @@
 		264E96F71D0207A70044628C /* SwiftChat */ = {
 			isa = PBXGroup;
 			children = (
+				264E972B1D020C120044628C /* DatabaseManager.swift */,
 				264E96F81D0207A70044628C /* AppDelegate.swift */,
 				264E96FC1D0207A80044628C /* Main.storyboard */,
 				264E97021D0207A80044628C /* Assets.xcassets */,
@@ -256,6 +259,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				264E972C1D020C120044628C /* DatabaseManager.swift in Sources */,
 				264E97011D0207A80044628C /* SwiftChat.xcdatamodeld in Sources */,
 				264E96F91D0207A70044628C /* AppDelegate.swift in Sources */,
 			);
