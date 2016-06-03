@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		264E96F91D0207A70044628C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264E96F81D0207A70044628C /* AppDelegate.swift */; };
-		264E96FB1D0207A80044628C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264E96FA1D0207A80044628C /* ViewController.swift */; };
 		264E96FE1D0207A80044628C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 264E96FC1D0207A80044628C /* Main.storyboard */; };
 		264E97011D0207A80044628C /* SwiftChat.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 264E96FF1D0207A80044628C /* SwiftChat.xcdatamodeld */; };
 		264E97031D0207A80044628C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 264E97021D0207A80044628C /* Assets.xcassets */; };
@@ -37,7 +36,6 @@
 /* Begin PBXFileReference section */
 		264E96F51D0207A20044628C /* SwiftChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		264E96F81D0207A70044628C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		264E96FA1D0207A80044628C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		264E96FD1D0207A80044628C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		264E97001D0207A80044628C /* SwiftChat.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SwiftChat.xcdatamodel; sourceTree = "<group>"; };
 		264E97021D0207A80044628C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -100,7 +98,6 @@
 			isa = PBXGroup;
 			children = (
 				264E96F81D0207A70044628C /* AppDelegate.swift */,
-				264E96FA1D0207A80044628C /* ViewController.swift */,
 				264E96FC1D0207A80044628C /* Main.storyboard */,
 				264E97021D0207A80044628C /* Assets.xcassets */,
 				264E97041D0207A80044628C /* LaunchScreen.storyboard */,
@@ -260,7 +257,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				264E97011D0207A80044628C /* SwiftChat.xcdatamodeld in Sources */,
-				264E96FB1D0207A80044628C /* ViewController.swift in Sources */,
 				264E96F91D0207A70044628C /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
