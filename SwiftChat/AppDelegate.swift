@@ -30,6 +30,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Use this method to release shared resources, save user data, invalidate timers, 
         // and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+
+        runBackgroundSave()
     }
 
     func applicationWillEnterForeground(application: UIApplication) {
@@ -50,5 +52,30 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // MARK: - Private
 
     private lazy var dataSource = DatabaseManager()
+    private func saveData() {
+        dataSource.saveContext()
+    }
+    private func runBackgroundSave() {
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) { [weak self] in
+            guard let liveSelf = self else {
+                return
+            }
+            let backgroundTaskId = liveSelf.beginBackgroundUpdateTask()
+            liveSelf.saveData()
+            liveSelf.endBackgroundUpdateTask(backgroundTaskId)
+        }
+    }
+    private func beginBackgroundUpdateTask() -> UIBackgroundTaskIdentifier {
+        var backgroundTaskId = UIBackgroundTaskInvalid
+        backgroundTaskId = UIApplication.sharedApplication().beginBackgroundTaskWithExpirationHandler {
+            guard backgroundTaskId != UIBackgroundTaskInvalid else {
+                return
+            }
+        }
+        return backgroundTaskId
+    }
+    private func endBackgroundUpdateTask(backgroundTaskId: UIBackgroundTaskIdentifier) {
+        UIApplication.sharedApplication().endBackgroundTask(backgroundTaskId)
+    }
 
 }
