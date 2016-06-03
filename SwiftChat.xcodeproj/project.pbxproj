@@ -101,8 +101,8 @@
 			children = (
 				264E972B1D020C120044628C /* DatabaseManager.swift */,
 				264E96F81D0207A70044628C /* AppDelegate.swift */,
-				264E96FC1D0207A80044628C /* Main.storyboard */,
 				264E97021D0207A80044628C /* Assets.xcassets */,
+				264E96FC1D0207A80044628C /* Main.storyboard */,
 				264E97041D0207A80044628C /* LaunchScreen.storyboard */,
 				264E97071D0207A80044628C /* Info.plist */,
 				264E96FF1D0207A80044628C /* SwiftChat.xcdatamodeld */,
