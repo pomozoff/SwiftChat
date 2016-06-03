@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		261C929A1D0237BB00D251FE /* XCGLogger.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 261C92991D0237BB00D251FE /* XCGLogger.framework */; };
 		264E96F91D0207A70044628C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264E96F81D0207A70044628C /* AppDelegate.swift */; };
 		264E96FE1D0207A80044628C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 264E96FC1D0207A80044628C /* Main.storyboard */; };
 		264E97011D0207A80044628C /* SwiftChat.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 264E96FF1D0207A80044628C /* SwiftChat.xcdatamodeld */; };
@@ -36,6 +37,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		261C92991D0237BB00D251FE /* XCGLogger.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCGLogger.framework; path = Carthage/Build/iOS/XCGLogger.framework; sourceTree = SOURCE_ROOT; };
 		264E96F51D0207A20044628C /* SwiftChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		264E96F81D0207A70044628C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		264E96FD1D0207A80044628C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -58,6 +60,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				261C929A1D0237BB00D251FE /* XCGLogger.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -78,6 +81,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		262DA70D1D022E2E002C8559 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				261C92991D0237BB00D251FE /* XCGLogger.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		264E96EC1D0207A10044628C = {
 			isa = PBXGroup;
 			children = (
@@ -109,6 +120,7 @@
 				264E97041D0207A80044628C /* LaunchScreen.storyboard */,
 				264E97071D0207A80044628C /* Info.plist */,
 				264E96FF1D0207A80044628C /* SwiftChat.xcdatamodeld */,
+				262DA70D1D022E2E002C8559 /* Frameworks */,
 			);
 			path = SwiftChat;
 			sourceTree = "<group>";
@@ -141,6 +153,7 @@
 				264E96F11D0207A10044628C /* Sources */,
 				264E96F21D0207A10044628C /* Frameworks */,
 				264E96F31D0207A10044628C /* Resources */,
+				262DA7101D022EF5002C8559 /* Carthage Copy Frameworks */,
 			);
 			buildRules = (
 			);
@@ -256,6 +269,25 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		262DA7101D022EF5002C8559 /* Carthage Copy Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/XCGLogger.framework",
+			);
+			name = "Carthage Copy Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		264E96F11D0207A10044628C /* Sources */ = {
@@ -407,6 +439,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = SwiftChat/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ru.akademon.SwiftChat;
@@ -418,6 +454,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = SwiftChat/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ru.akademon.SwiftChat;
@@ -490,6 +530,7 @@
 				264E97221D0207A90044628C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		264E97231D0207A90044628C /* Build configuration list for PBXNativeTarget "SwiftChatTests" */ = {
 			isa = XCConfigurationList;
@@ -498,6 +539,7 @@
 				264E97251D0207A90044628C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		264E97261D0207A90044628C /* Build configuration list for PBXNativeTarget "SwiftChatUITests" */ = {
 			isa = XCConfigurationList;
@@ -506,6 +548,7 @@
 				264E97281D0207A90044628C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
