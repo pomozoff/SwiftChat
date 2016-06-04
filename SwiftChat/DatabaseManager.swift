@@ -8,6 +8,7 @@
 
 import Foundation
 import CoreData
+import XCGLogger
 
 typealias ErrorList = [ErrorType]
 
@@ -30,28 +31,43 @@ class DatabaseManager: DataSource {
         
     }
     func saveData() {
-            do {
-                try managedObjectContext.save()
-            } catch {
-                // Replace this implementation with code to handle the error appropriately.
-                // abort() causes the application to generate a crash log and terminate.
-                // You should not use this function in a shipping application, although it may be useful during development.
-                let nserror = error as NSError
-                print("Unresolved error \(nserror), \(nserror.userInfo)")
-                abort()
-            }
+        log.verbose("Save the current managed context")
+        guard managedObjectContext.hasChanges else {
+            log.info("There are no changes in the current managed context")
+            return
         }
+        do {
+            try managedObjectContext.save()
+            log.verbose("The current managed context saved successfully")
+        } catch {
+            // Replace this implementation with code to handle the error appropriately.
+            // abort() causes the application to generate a crash log and terminate.
+            // You should not use this function in a shipping application, although it may be useful during development.
+
+            let nserror = error as NSError
+            log.severe("Unresolved error \(nserror), \(nserror.userInfo)")
+            abort()
+        }
+    }
     
     // MARK: - Private - Core Data stack
     
     private lazy var applicationDocumentsDirectory: NSURL = {
         // The directory the application uses to store the Core Data store file.
         // This code uses a directory named "ru.akademon.SwiftChat" in the application's documents Application Support directory.
+        
+        let log = XCGLogger.defaultInstance()
+        log.verbose("Obtain application's document directory")
+        
         return NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask).last!
     }()
     private lazy var managedObjectModel: NSManagedObjectModel = {
         // The managed object model for the application. This property is not optional.
         // It is a fatal error for the application not to be able to find and load its model.
+        
+        let log = XCGLogger.defaultInstance()
+        log.verbose("Load managed object model")
+
         let modelURL = NSBundle.mainBundle().URLForResource("SwiftChat", withExtension: "momd")!
         return NSManagedObjectModel(contentsOfURL: modelURL)!
     }()
@@ -60,11 +76,18 @@ class DatabaseManager: DataSource {
         // This implementation creates and returns a coordinator, having added the store for the application to it.
         // This property is optional since there are legitimate error conditions that could cause the creation of the store to fail.
         // Create the coordinator and store
+        
+        let log = XCGLogger.defaultInstance()
+        log.verbose("Initialize persistent store coordinator")
+        
         let coordinator = NSPersistentStoreCoordinator(managedObjectModel: self.managedObjectModel)
         let url = self.applicationDocumentsDirectory.URLByAppendingPathComponent("SingleViewCoreData.sqlite")
         var failureReason = "There was an error creating or loading the application's saved data."
+        
         do {
+            log.verbose("Add SQL persistent store at SQLite database")
             try coordinator.addPersistentStoreWithType(NSSQLiteStoreType, configuration: nil, URL: url, options: nil)
+            log.verbose("SQL persistent store initialized successfully")
         } catch {
             // Report any error we got.
             var dict = [String: AnyObject]()
@@ -76,7 +99,7 @@ class DatabaseManager: DataSource {
             // Replace this with code to handle the error appropriately.
             // abort() causes the application to generate a crash log and terminate.
             // You should not use this function in a shipping application, although it may be useful during development.
-            print("Unresolved error \(wrappedError), \(wrappedError.userInfo)")
+            log.severe("Unresolved error \(wrappedError), \(wrappedError.userInfo)")
             abort()
         }
         return coordinator
@@ -90,5 +113,9 @@ class DatabaseManager: DataSource {
         managedObjectContext.persistentStoreCoordinator = coordinator
         return managedObjectContext
     }()
+    
+    // MARK: - Private - Logger
+
+    private let log = XCGLogger.defaultInstance()
 
 }

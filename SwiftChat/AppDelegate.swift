@@ -60,7 +60,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     private lazy var dataSource = DatabaseManager()
     private func saveData() {
-        log.verbose("Save core data")
         dataSource.saveData()
     }
     private func runBackgroundSave() {
