@@ -18,6 +18,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         
         configureLogger()
+        
+        let appDelegate  = UIApplication.sharedApplication().delegate as! AppDelegate
+        let chatViewController = appDelegate.window!.rootViewController as! ChatTableViewController
+        chatViewController.dataSource = dataSource
+        
         return true
     }
     
