@@ -61,8 +61,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     private lazy var dataSource = DatabaseManager()
     private func saveData() {
         log.verbose("Save core data")
-        dataSource.saveContext()
-        log.verbose("Save core data")
+        dataSource.saveData()
     }
     private func runBackgroundSave() {
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) { [weak self] in

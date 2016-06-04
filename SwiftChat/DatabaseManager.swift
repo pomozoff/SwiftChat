@@ -9,18 +9,27 @@
 import Foundation
 import CoreData
 
+typealias ErrorList = [ErrorType]
+
 protocol DataSource {
     
-    func saveContext()
+    func fetchEventsCount(count: Int, fromItemId: Int, resultHandler: (EventList?, ErrorList?) -> Void)
+    func sendText(text: String, resultHandler: (Event?, ErrorList?) -> Void)
+    func saveData()
     
 }
 
 class DatabaseManager: DataSource {
     
-    // MARK: - Public interface
+    // MARK: - DataSource
 
-    func saveContext() {
-        if managedObjectContext.hasChanges {
+    func fetchEventsCount(count: Int, fromItemId: Int, resultHandler: (EventList?, ErrorList?) -> Void) {
+        
+    }
+    func sendText(text: String, resultHandler: (Event?, ErrorList?) -> Void) {
+        
+    }
+    func saveData() {
             do {
                 try managedObjectContext.save()
             } catch {
@@ -32,7 +41,6 @@ class DatabaseManager: DataSource {
                 abort()
             }
         }
-    }
     
     // MARK: - Private - Core Data stack
     
@@ -41,14 +49,12 @@ class DatabaseManager: DataSource {
         // This code uses a directory named "ru.akademon.SwiftChat" in the application's documents Application Support directory.
         return NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask).last!
     }()
-    
     private lazy var managedObjectModel: NSManagedObjectModel = {
         // The managed object model for the application. This property is not optional.
         // It is a fatal error for the application not to be able to find and load its model.
         let modelURL = NSBundle.mainBundle().URLForResource("SwiftChat", withExtension: "momd")!
         return NSManagedObjectModel(contentsOfURL: modelURL)!
     }()
-    
     private lazy var persistentStoreCoordinator: NSPersistentStoreCoordinator = {
         // The persistent store coordinator for the application.
         // This implementation creates and returns a coordinator, having added the store for the application to it.
