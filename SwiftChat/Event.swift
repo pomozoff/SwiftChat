@@ -7,3 +7,11 @@
 //
 
 import Foundation
+
+typealias EventList = [Event]
+
+struct Event {
+    
+    
+    
+}

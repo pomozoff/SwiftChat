@@ -17,6 +17,7 @@
 		264E971C1D0207A90044628C /* SwiftChatUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264E971B1D0207A90044628C /* SwiftChatUITests.swift */; };
 		264E972A1D020B1A0044628C /* ChatTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264E97291D020B1A0044628C /* ChatTableViewController.swift */; };
 		264E972C1D020C120044628C /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264E972B1D020C120044628C /* DatabaseManager.swift */; };
+		2665DD551D02CD9100B8EB03 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2665DD541D02CD9100B8EB03 /* Event.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +54,7 @@
 		264E971D1D0207A90044628C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		264E97291D020B1A0044628C /* ChatTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatTableViewController.swift; sourceTree = "<group>"; };
 		264E972B1D020C120044628C /* DatabaseManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
+		2665DD541D02CD9100B8EB03 /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,6 +116,7 @@
 			children = (
 				264E97291D020B1A0044628C /* ChatTableViewController.swift */,
 				264E972B1D020C120044628C /* DatabaseManager.swift */,
+				2665DD541D02CD9100B8EB03 /* Event.swift */,
 				264E96F81D0207A70044628C /* AppDelegate.swift */,
 				264E97021D0207A80044628C /* Assets.xcassets */,
 				264E96FC1D0207A80044628C /* Main.storyboard */,
@@ -298,6 +301,7 @@
 				264E97011D0207A80044628C /* SwiftChat.xcdatamodeld in Sources */,
 				264E96F91D0207A70044628C /* AppDelegate.swift in Sources */,
 				264E972A1D020B1A0044628C /* ChatTableViewController.swift in Sources */,
+				2665DD551D02CD9100B8EB03 /* Event.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
