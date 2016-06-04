@@ -34,7 +34,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
         
-        log.info("Did enter background")
+        log.info("Application did enter background")
         runBackgroundSave()
     }
     
