@@ -11,7 +11,6 @@ import CoreData
 
 protocol DataSource {
     
-    var managedObjectContext: NSManagedObjectContext { get }
     func saveContext()
     
 }
@@ -20,14 +19,6 @@ class DatabaseManager: DataSource {
     
     // MARK: - Public interface
 
-    lazy var managedObjectContext: NSManagedObjectContext = {
-        // Returns the managed object context for the application (which is already bound to the persistent store coordinator for the application.)
-        // This property is optional since there are legitimate error conditions that could cause the creation of the context to fail.
-        let coordinator = self.persistentStoreCoordinator
-        var managedObjectContext = NSManagedObjectContext(concurrencyType: .MainQueueConcurrencyType)
-        managedObjectContext.persistentStoreCoordinator = coordinator
-        return managedObjectContext
-    }()
     func saveContext() {
         if managedObjectContext.hasChanges {
             do {
@@ -43,7 +34,7 @@ class DatabaseManager: DataSource {
         }
     }
     
-    // MARK: - Core Data stack
+    // MARK: - Private - Core Data stack
     
     private lazy var applicationDocumentsDirectory: NSURL = {
         // The directory the application uses to store the Core Data store file.
@@ -83,6 +74,15 @@ class DatabaseManager: DataSource {
             abort()
         }
         return coordinator
+    }()
+    private lazy var managedObjectContext: NSManagedObjectContext = {
+        // Returns the managed object context for the application (which is already bound to the persistent store coordinator for the application.)
+        // This property is optional since there are legitimate error conditions that could cause the creation of the context to fail.
+        
+        let coordinator = self.persistentStoreCoordinator
+        var managedObjectContext = NSManagedObjectContext(concurrencyType: .MainQueueConcurrencyType)
+        managedObjectContext.persistentStoreCoordinator = coordinator
+        return managedObjectContext
     }()
 
 }
