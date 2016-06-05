@@ -83,6 +83,68 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		261CEA741D04546A0016534F /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				261CEA751D0454750016534F /* Application */,
+				261CEA781D0454A60016534F /* Data */,
+				261CEA761D0454860016534F /* Service */,
+				261CEA771D04549C0016534F /* View */,
+			);
+			name = Sources;
+			sourceTree = "<group>";
+		};
+		261CEA751D0454750016534F /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				264E96F81D0207A70044628C /* AppDelegate.swift */,
+			);
+			name = Application;
+			sourceTree = "<group>";
+		};
+		261CEA761D0454860016534F /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				264E972B1D020C120044628C /* DatabaseManager.swift */,
+			);
+			name = Service;
+			sourceTree = "<group>";
+		};
+		261CEA771D04549C0016534F /* View */ = {
+			isa = PBXGroup;
+			children = (
+				264E97291D020B1A0044628C /* ChatTableViewController.swift */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		261CEA781D0454A60016534F /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				2665DD541D02CD9100B8EB03 /* Event.swift */,
+			);
+			name = Data;
+			sourceTree = "<group>";
+		};
+		261CEA791D0454BC0016534F /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				264E97021D0207A80044628C /* Assets.xcassets */,
+				264E96FC1D0207A80044628C /* Main.storyboard */,
+				264E97041D0207A80044628C /* LaunchScreen.storyboard */,
+				264E96FF1D0207A80044628C /* SwiftChat.xcdatamodeld */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		261CEA7A1D0454D80016534F /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				264E97071D0207A80044628C /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		262DA70D1D022E2E002C8559 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -114,15 +176,9 @@
 		264E96F71D0207A70044628C /* SwiftChat */ = {
 			isa = PBXGroup;
 			children = (
-				264E97291D020B1A0044628C /* ChatTableViewController.swift */,
-				264E972B1D020C120044628C /* DatabaseManager.swift */,
-				2665DD541D02CD9100B8EB03 /* Event.swift */,
-				264E96F81D0207A70044628C /* AppDelegate.swift */,
-				264E97021D0207A80044628C /* Assets.xcassets */,
-				264E96FC1D0207A80044628C /* Main.storyboard */,
-				264E97041D0207A80044628C /* LaunchScreen.storyboard */,
-				264E97071D0207A80044628C /* Info.plist */,
-				264E96FF1D0207A80044628C /* SwiftChat.xcdatamodeld */,
+				261CEA741D04546A0016534F /* Sources */,
+				261CEA791D0454BC0016534F /* Resources */,
+				261CEA7A1D0454D80016534F /* Supporting Files */,
 				262DA70D1D022E2E002C8559 /* Frameworks */,
 			);
 			path = SwiftChat;
