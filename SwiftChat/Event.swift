@@ -8,7 +8,9 @@
 
 import Foundation
 
-typealias EventList = [Event]
+typealias SectionTitle = String
+typealias EventFlatList = [Event]
+typealias EventList = [SectionTitle : EventFlatList]
 
 struct Event {
     

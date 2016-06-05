@@ -7,12 +7,44 @@
 //
 
 import UIKit
+import XCGLogger
 
 class ChatTableViewController: UITableViewController {
     
     // MARK: - Properties
 
-    var dataSource: DataSource?
+    var dataSource: DataSource? {
+        didSet {
+            log.debug("Data source has been updated to: \(dataSource)")
+            guard let newDataSource = dataSource else {
+                log.warning("Data source is nil, clear table")
+                dispatch_async(dispatch_get_main_queue()) { [weak self] in
+                    self?.eventList = EventList()
+                    self?.tableView.reloadData()
+                }
+                return
+            }
+            newDataSource.reloadData() { [weak self] eventList, errorList in
+                guard let liveSelf = self else {
+                    XCGLogger.defaultInstance().debug("ChatTableViewController is dead")
+                    return
+                }
+                if let gotErrorList = errorList {
+                    liveSelf.log.error("Failed to reload data: \(gotErrorList)")
+                    return
+                }
+                guard let newEventList = eventList else {
+                    liveSelf.log.error("Failed to reload data, new event list is nil")
+                    return
+                }
+                dispatch_async(dispatch_get_main_queue()) {
+                    liveSelf.log.verbose("Load new events: \(newEventList)")
+                    liveSelf.eventList = newEventList
+                    liveSelf.tableView.reloadData()
+                }
+            }
+        }
+    }
     
     // MARK: - Life cycle
     
@@ -37,5 +69,11 @@ class ChatTableViewController: UITableViewController {
         // #warning Incomplete implementation, return the number of rows
         return 0
     }
+    
+    // MARK: - Private - Logger
+    
+    private let log = XCGLogger.defaultInstance()
+    
+    private var eventList = EventList()
 
 }

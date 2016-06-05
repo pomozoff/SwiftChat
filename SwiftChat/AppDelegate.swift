@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 import XCGLogger
 
 @UIApplicationMain
@@ -21,8 +22,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let appDelegate  = UIApplication.sharedApplication().delegate as! AppDelegate
         let chatViewController = appDelegate.window!.rootViewController as! ChatTableViewController
-        chatViewController.dataSource = dataSource
         
+        dataSource.configureCoreData("SingleViewCoreData.sqlite") { [unowned self] in
+            dispatch_async(dispatch_get_main_queue()) {
+                chatViewController.dataSource = self.dataSource
+            }
+        }
         return true
     }
     
@@ -63,7 +68,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     // MARK: - Private - Save Data
     
-    private lazy var dataSource = DatabaseManager()
+    private lazy var dataSource: DatabaseManager = {
+        let storeDirectory = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask).last!
+        let modelURL = NSBundle.mainBundle().URLForResource("SwiftChat", withExtension: "momd")!
+        let model = NSManagedObjectModel(contentsOfURL: modelURL)!
+        
+        return DatabaseManager(storeDirectory: storeDirectory, managedObjectModel: model)
+    }()
     private func saveData() {
         dataSource.saveData()
     }
