@@ -87,9 +87,9 @@
 			isa = PBXGroup;
 			children = (
 				261CEA751D0454750016534F /* Application */,
+				261CEA771D04549C0016534F /* Controller */,
 				261CEA781D0454A60016534F /* Data */,
 				261CEA761D0454860016534F /* Service */,
-				261CEA771D04549C0016534F /* View */,
 			);
 			name = Sources;
 			sourceTree = "<group>";
@@ -110,12 +110,12 @@
 			name = Service;
 			sourceTree = "<group>";
 		};
-		261CEA771D04549C0016534F /* View */ = {
+		261CEA771D04549C0016534F /* Controller */ = {
 			isa = PBXGroup;
 			children = (
 				264E97291D020B1A0044628C /* ChatTableViewController.swift */,
 			);
-			name = View;
+			name = Controller;
 			sourceTree = "<group>";
 		};
 		261CEA781D0454A60016534F /* Data */ = {
