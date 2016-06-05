@@ -31,22 +31,19 @@ class DatabaseManager: DataSource {
         
     }
     func saveData() {
-        log.verbose("Save the current managed context")
-        guard managedObjectContext.hasChanges else {
-            log.info("There are no changes in the current managed context")
+        let log = XCGLogger.defaultInstance()
+        log.verbose("Save all managed object contexts")
+        guard mainContext.hasChanges else {
+            log.info("There are no changes in the current managed object context")
             return
         }
-        do {
-            try managedObjectContext.save()
-            log.verbose("The current managed context saved successfully")
-        } catch {
-            // Replace this implementation with code to handle the error appropriately.
-            // abort() causes the application to generate a crash log and terminate.
-            // You should not use this function in a shipping application, although it may be useful during development.
-
-            let nserror = error as NSError
-            log.severe("Unresolved error \(nserror), \(nserror.userInfo)")
-            abort()
+        mainContext.performBlockAndWait { [unowned self] in
+            log.verbose("Save main managed object contexts - \(self.mainContext)")
+            self.saveManagedObjectContext(self.mainContext)
+            self.masterContext.performBlock {
+                log.verbose("Save master managed object contexts - \(self.masterContext)")
+                self.saveManagedObjectContext(self.masterContext)
+            }
         }
     }
     
@@ -87,7 +84,6 @@ class DatabaseManager: DataSource {
         do {
             log.verbose("Add SQL persistent store at SQLite database")
             try coordinator.addPersistentStoreWithType(NSSQLiteStoreType, configuration: nil, URL: url, options: nil)
-            log.verbose("SQL persistent store initialized successfully")
         } catch {
             // Report any error we got.
             var dict = [String: AnyObject]()
@@ -102,17 +98,44 @@ class DatabaseManager: DataSource {
             log.severe("Unresolved error \(wrappedError), \(wrappedError.userInfo)")
             abort()
         }
+        log.verbose("SQL persistent store initialized successfully")
         return coordinator
     }()
-    private lazy var managedObjectContext: NSManagedObjectContext = {
+    
+    private lazy var masterContext: NSManagedObjectContext = {
         // Returns the managed object context for the application (which is already bound to the persistent store coordinator for the application.)
         // This property is optional since there are legitimate error conditions that could cause the creation of the context to fail.
         
         let coordinator = self.persistentStoreCoordinator
-        var managedObjectContext = NSManagedObjectContext(concurrencyType: .MainQueueConcurrencyType)
+        let managedObjectContext = NSManagedObjectContext(concurrencyType: .PrivateQueueConcurrencyType)
         managedObjectContext.persistentStoreCoordinator = coordinator
         return managedObjectContext
     }()
+    private lazy var mainContext: NSManagedObjectContext = {
+        let managedObjectContext = NSManagedObjectContext(concurrencyType: .MainQueueConcurrencyType)
+        managedObjectContext.parentContext = self.masterContext
+        return managedObjectContext
+    }()
+    private lazy var workerContext: NSManagedObjectContext = {
+        let managedObjectContext = NSManagedObjectContext(concurrencyType: .PrivateQueueConcurrencyType)
+        managedObjectContext.parentContext = self.mainContext
+        return managedObjectContext
+    }()
+    
+    private func saveManagedObjectContext(managedObjectContext: NSManagedObjectContext) {
+        do {
+            try managedObjectContext.save()
+        } catch {
+            // Replace this implementation with code to handle the error appropriately.
+            // abort() causes the application to generate a crash log and terminate.
+            // You should not use this function in a shipping application, although it may be useful during development.
+            
+            let nserror = error as NSError
+            log.error("Failed to save the managed object context - \(managedObjectContext) - \(nserror), \(nserror.userInfo)")
+            abort()
+        }
+        log.verbose("The managed object context saved successfully - \(managedObjectContext)")
+    }
     
     // MARK: - Private - Logger
 
